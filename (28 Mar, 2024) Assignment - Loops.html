@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Table</title>
+</head>
+
+<body>
+    <input id="textOne" type="text">
+    <input id="textTwo" type="text">
+    <button onclick="runMe()">Run algorithm</button>
+    <div id="divOne"></div>
+</body>
+<script>
+    let textOne = document.getElementById("textOne")
+    let textTwo = document.getElementById("textTwo")
+    let play = document.getElementById("divOne")
+
+    function runMe() {
+        let numOne = Number(textOne.value)
+        let numTwo = Number(textTwo.value)
+        console.log(numOne)
+        console.log(numTwo)
+
+        for (let i = 1; i <= numTwo; i++) {
+            let result = (numOne * i)
+            play.innerHTML += (`${numOne} * ${i} = ${result} <br>`)
+            console.log(`${numOne} * ${i} = ${result}`)
+        }
+    }
+</script>
+
+</html>

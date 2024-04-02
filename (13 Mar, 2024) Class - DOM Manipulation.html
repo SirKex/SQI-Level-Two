@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="h1"></h1>
+    <h2 class="h2"></h2>
+    <h2 id="h2"></h2>
+
+    <div id="divOne"></div>
+</body>
+<script>
+    // DOM Maniplation
+    let h1 = document.getElementById("h1");
+    //h1.innerHTML = "Our first DOM manipulation class";
+    h1.innerText = "This is our first DOM manipulation class";
+
+    // let h2 = document.getElementsByClassName("h2")
+
+    let h2 = document.querySelector(".h2");
+    h2.innerHTML = "This is a text";
+
+    let anotherh2 = document.querySelector("#h2");
+    anotherh2.innerHTML = "test test test";
+
+    let divOne = document.getElementById("divOne");
+    divOne.style.backgroundColor = "red";
+    n = "100px";
+    divOne.style.width = n;
+    divOne.style.height = n;
+
+    let parent = document.body;
+    let secOne = document.createElement("section");
+    secOne.id = "secOne"
+    parent.appendChild(secOne);
+    secOne.style.backgroundColor = "blue";
+    secOne.style.width = n;
+    secOne.style.height = n;
+    secOne.style.margin = n;
+
+    // functions
+    // function analyzeNum(){
+    //     let num = prompt("Enter your number:")
+    // num = Number(num)
+    // num % 2 === 0 ? alert (`The number is an even number`) : alert (`The number is an odd number`)
+    // }
+
+    // analyzeNum()
+
+    const alertUserName = () => {
+        let userName = prompt("Enter your username: ");
+        alert(`Welcome ${userName}`);
+    }
+
+    alertUserName()
+
+    const alertFavoriteFood = function (){
+        let favoriteFood = prompt("Enter you favorite food")
+        alert(`Your favorite food ${favoriteFood} is a nice meal`)
+        console.log(window.name)
+        console.log(window)
+    }
+    alertFavoriteFood();
+
+
+    
+    let testOne = 54;
+    function scoped(){
+        let testTwo = 105
+    }
+    console.log(testOne);
+    // console.log(testTwo);
+
+    function addNumOne(){
+        let testThree = 5 + 6;
+        return testThree;
+    }
+
+    let anotherNumOne = addNumOne();
+    console.log(anotherNumOne)
+
+    let mrOlayemi = {
+        name: "Olayemi",
+        age: 1111, 
+        color:"Blue"
+    }
+    console.log(mrOlayemi.name)
+
+    function addNumTwo(){
+        let addition = 15 + 5;
+        let subtraction = 15 - 5;
+        let division = 15 / 5;
+        let multiplication = 15 * 5;
+        let modulo = 15 % 5;
+        // return [addition, subtraction, division, multiplication, modulo]
+        return {
+            addition,
+            subtraction,
+            division,
+            multiplication,
+            modulo
+        }
+    }
+
+    // let numsOne = addNumTwo();
+    // let add = numsOne[0];
+    // console.log(add);
+
+    let numsTwo = addNumTwo();
+    console.log(numsTwo)
+
+    function parametrizeExample(a, b){
+        let addition = a + b;
+        let subtraction = a - b;
+        let division = a / b;
+        let multiplication = a * b;
+        let modulo = a % b;
+        // return [addition, subtraction, division, multiplication, modulo]
+        return {
+            addition,
+            subtraction,
+            division,
+            multiplication,
+            modulo
+        }
+    }
+    
+    let numsThree = parametrizeExample(24, 4);
+    console.log(numsThree);
+
+    function getDetails(name, age, color, food){
+        alert(`My name is ${name}. I am ${age} years old. My favorite color is ${color} and my favorite food is ${food}.`)
+    }
+    getDetails("Tawheed", 1112, "Blue", "Tuwo");
+
+
+
+    function checkNum(){
+        let num = prompt("Enter your number: ");
+        let num2 = Number(num);
+        if(num2 % 2 === 0){
+            alert(`${num2} is an even number`);
+        }else{
+            alert(`${num2} is an odd number`);
+        }
+    }
+    checkNum();
+
+
+
+    function checkName(){
+        let wole = "Wole";
+        let olayemi = "Olayemi";
+        let tawheed = "Tawheed";
+        let joseph = "Joseph";
+
+        let suppliedName = prompt("Enter your name: ")
+        if(suppliedName === wole){
+            alert(`Welcome ${suppliedName}. You are a true Chelsea fan.`)
+        }else if(suppliedName === olayemi){
+            alert(`Welcome ${suppliedName}. You are a true Chelsea fan.`)
+        } else if(suppliedName === tawheed){
+            alert(`Welcome ${suppliedName}. You are a true Chelsea fan.`)
+        } else if(suppliedName === joseph){
+            alert(`Welcome ${suppliedName}. You are a true Chelsea fan.`)
+        } else{
+            alert(`Gerrraheia ${suppliedName}. You have no taste.`) 
+        }
+    }
+    checkName();
+
+    function alertDay(){
+        let day = prompt("Enter your day of the week");
+
+        switch (day) {
+            case "Sunday":
+                alert(`${day} is the first day of the week`)
+                break;
+            case "Monday":
+                alert(`${day} is the second day of the week`)
+                break
+                case "Tuesday":
+                alert(`${day} is the third day of the week`)
+                break;
+            case "Wednesday":
+                alert(`${day} is the fourth day of the week`)
+                break
+                case "Thursday":
+                alert(`${day} is the fifth day of the week`)
+                break;
+            case "Friday":
+                alert(`${day} is the sixth day of the week`)
+                break
+            case "Saturday":
+                alert(`${day} is the seventh day of the week`)
+                break
+        
+            default:
+                alert(`${day} is not a day of the week`)
+                break;
+        }
+    }
+
+    alertDay();
+
+</script>
+</html>

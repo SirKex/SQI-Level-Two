@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+
+<script>
+   let test1 = 30;
+    var test2 = 50;
+    const test3 = 45;
+    console.log(test1);
+
+    test1 = 75;
+    console.log(test1);
+
+    let myName = "Adewole";
+
+    let ridwanUsesGlasses = true
+
+    let num1 = 33;
+    let num2 = num1;
+
+    console.log(num1);
+    console.log(num2);
+
+    num2 = 45;
+    console.log(num1);
+    console.log(num2);
+
+    // List of primitive data types
+    // 1) Numbers
+    // 2) Strings
+    // 3) Booleans
+    // 4) Null
+    // 5) Undefined
+
+
+
+    // List of non-primitive data types
+    // 1) Arrays
+    // 2) Objects
+
+    let arr1 = [1,2,3,4,5];
+    let arr2 = arr1
+    console.log(arr1);
+    console.log(arr2);
+
+    arr2.push(6);
+    consloe.log(arr1);
+    console.log(arr2);
+
+    let nameArr = ["Wole", "Taoheed", "Segun", "Olayemi", "Ridwan", "Joseph", "Temitayo", "Faruq"]
+    let Temitayo = nameArr[6];
+    nameArr[nameArr.length] = "Cyril";
+
+    nameArr[5] = "Joe"
+
+    console.log(nameArr)
+
+    let testObj= {
+        name:"Wole",
+        age:1111,
+        color:"Blue",
+        food:"Beans"
+    }
+    console.log(testObj.name)
+
+    let testObj2 = testObj;
+    console.log(testObj);
+    console.log(testObj2);
+
+    testObj2["useGlasses"] = true
+
+    console.log(testObj)
+    console.log(testObj.food)
+
+
+
+    //Test
+    let parent = document.body
+    let divOne = document.createElement("div")
+    divOne.id = "divOne"
+    divOne.style.width = "200px";
+    divOne.style.height = "200px";
+    divOne.style.backgroundColor = "Green";
+    divOne.style.border = "1px solid black";
+    
+    parent.appendChild(divOne);
+
+    let inputOne = document.createElement("input")
+    inputOne.id = "inputOne"
+    parent.appendChild(inputOne)
+
+    let buttonOne = document.createElement("button")
+    buttonOne.innerHTML = "Click me";
+    function changeColor(){
+        let color = inoutOne.value;
+        console.log(color)
+        divOne.style.backgroundColor = color
+    }
+
+    buttonOne.addEventListener("click", changeColor)
+    parent.appendChild(buttonOne);
+    
+
+</script>
+</html>
