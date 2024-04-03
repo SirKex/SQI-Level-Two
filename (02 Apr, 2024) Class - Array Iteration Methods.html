@@ -18,15 +18,73 @@
         console.log(item * 13)
     });
 
-    arrOne.map((item, index) => {
-        console.log(item * 20)
-    });
+    let newNum = arrOne.map((item, index) => {
+            console.log(item * 25)
+            return item * 20
+        })
+
+    console.log(newNum);
 
     let play = document.getElementById("divOne")
     let arrName = ["Wole", "Ridwan", "Olayemi", "Tawheed", "Segun", "Joseph", "TY", "Damola"]
     arrName.forEach((name, index) => {
         play.innerHTML += `My name is ${name} <br>`
     })
+
+    let evenArr = arrOne.filter((item, index) => {
+        return item % 2 === 0
+    })
+
+    console.log(evenArr);
+
+    let test = arrName.find((item, index) => {
+        return item.toUpperCase().includes("OLA")
+        })
+
+    console.log(test)
+
+    let testNumArr = [10, 20, 30, 40, 50, 60, 70, 80, 90];
+    let reducedArr = testNumArr.reduce((total, item) => {
+        let reducedValue = total + item;
+        return reducedValue
+    }, 0)
+
+    console.log(reducedArr)
+
+    let userDetails = [
+        { name: "Wole", age: 1111 },
+        { name: "Ridwan", age: 1112 },
+        { name: "Olayemi", age: 1113 },
+        { name: "Taoheed", age: 1114 },
+        { name: "Segun", age: 1115 },
+        { name: "Joseph", age: 1116 },
+        { name: "Temitayo", age: 1117 },
+        { name: "Damola", age: 1118 },
+    ]
+
+    let reducedAge = userDetails.reduce((total, item) => {
+        return total + item.age
+    }, 0)
+
+    console.log(reducedAge);
+
+    let numArrOne = [1, 2, 3, 4, 5];
+    let numArrTwo = [6, 7, 8, 9, 0];
+
+    let numArrThree = [...numArrOne, ...numArrTwo];
+    console.log(numArrThree);
+
+
+    let arrFour = ["Blue", "Yellow", "Pink", "Orange", "Purple"];
+    const [blue, yellow, pink, orange, purple] = arrFour;
+
+    const details = {
+        name: "Test",
+        age: 1111,
+        color: " Green",
+        isFasting: true
+    }
+    const { name, age, color, isFasting } = details
 </script>
 
 </html>

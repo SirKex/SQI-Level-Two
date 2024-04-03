@@ -30,17 +30,37 @@
 <body>
     <section class="mx-auto card w-75 d-flex justify-content-evenly mt-5" id="secOne">
         <p class="text-center fs-3">Shopping List</p>
-        <input class="border m-3" placeholder="Item">
-        <input class="border m-3" placeholder="Price">
-        <input class="border m-3" placeholder="Quantity">
+        <input id="One" class="border m-3" placeholder="Item">
+        <input id="Two" class="border m-3" placeholder="Price">
+        <input id="Three" class="border m-3" placeholder="Quantity">
         <div class="d-flex w-100">
-            <button class="btn btn-dark mx-3">Submit</button>
+            <button onclick="addList()" class="btn btn-dark mx-3">Submit</button>
             <div id="divTotal"></div>
         </div>
     </section>
     <div id="divOne" class=" mt-4 mx-auto card w-75" style="height: 70px;"></div>
 </body>
 <script>
-    
+
+
+    // let shoppingList = [
+    //     { name: "Wole", age: 1111 },
+    //     { name: "Ridwan", age: 1112 },
+    //     { name: "Olayemi", age: 1113 },
+    // ]
+
+    function addList() {
+        // divOne.innerHTML += `Item:${item}, Price: ${price}, Quantity: ${quantity}`
+        let item = document.getElementById("One").value
+        let price = document.getElementById("Two").value
+        let quan = document.getElementById("Three").value
+
+        let divOne = document.getElementById("divOne")
+
+        console.log(item);
+        console.log(price);
+        console.log(quan);
+    }
 </script>
+
 </html>
