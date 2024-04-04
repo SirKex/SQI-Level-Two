@@ -25,6 +25,25 @@
     button {
         width: 10%;
     }
+
+    #divOne>div {
+        display: flex;
+        font-size: 20px;
+        border: 1px solid lightgray;
+        align-items: center;
+        width: 75%;
+        height: 70px;
+        border-radius: 5px;
+        margin: auto;
+        justify-content: space-evenly;
+    }
+
+    #divOne>div>button {
+        padding: 10px 20px;
+        border-radius: 10px;
+        background-color: black;
+        color: white;
+    }
 </style>
 
 <body>
@@ -38,28 +57,41 @@
             <div id="divTotal"></div>
         </div>
     </section>
-    <div id="divOne" class=" mt-4 mx-auto card w-75" style="height: 70px;"></div>
+    <div id="divOne" class="mt-4"></div>
 </body>
 <script>
 
-
-    // let shoppingList = [
-    //     { name: "Wole", age: 1111 },
-    //     { name: "Ridwan", age: 1112 },
-    //     { name: "Olayemi", age: 1113 },
-    // ]
-
     function addList() {
-        // divOne.innerHTML += `Item:${item}, Price: ${price}, Quantity: ${quantity}`
         let item = document.getElementById("One").value
         let price = document.getElementById("Two").value
         let quan = document.getElementById("Three").value
-
+        let sub = Number(price * quan)
+        let totalDiv = document.getElementById("divTotal")
         let divOne = document.getElementById("divOne")
 
-        console.log(item);
-        console.log(price);
-        console.log(quan);
+        let total = sub
+
+        totalDiv.innerHTML += `Total: ${total}`
+
+        divOne.innerHTML +=
+            `<div>Item:${item}, Price: ${price}, Quantity: ${quan}, Subtotal:${sub}
+                <button>Delete</button>
+                <button onclick="test()">Edit</button>
+            </div> <br>`
+        
+        //  users.map((item, index) => {
+        //     divOne.innerHTML += `
+        //     <p>${item.name}</p>
+        //     <p>${item.age}</p>
+        //     <button>Edit</button>
+        // `
+        // })
+        // for (let i = 1; i <= numTwo; i++) {
+        //     let result = (numOne * i)
+        //     play.innerHTML += (`${numOne} * ${i} = ${result} <br>`)
+        //     console.log(`${numOne} * ${i} = ${result}`)
+        // }
+
     }
 </script>
 
