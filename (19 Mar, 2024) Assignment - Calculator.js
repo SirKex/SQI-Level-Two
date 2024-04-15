@@ -12,7 +12,7 @@ let sign
 function opeRate(input) {
     sign = input;
     play.value = disp.value;
-    disp.value = ""
+    disp.value = "";
 }
 
 function calculate() {

@@ -27,22 +27,15 @@
     }
 
     #divOne>div {
-        display: flex;
-        font-size: 20px;
         border: 1px solid lightgray;
-        align-items: center;
-        width: 75%;
         height: 70px;
         border-radius: 5px;
-        margin: auto;
-        justify-content: space-evenly;
     }
 
-    #divOne>div>button {
-        padding: 10px 20px;
+    #divOne>div>div>button {
+        width: 100px;
+        height: 40px;
         border-radius: 10px;
-        background-color: black;
-        color: white;
     }
 </style>
 
@@ -52,6 +45,7 @@
         <input id="One" class="border m-3" placeholder="Item">
         <input id="Two" class="border m-3" placeholder="Price">
         <input id="Three" class="border m-3" placeholder="Quantity">
+        <p id="totalP" class="text-end">Total: ₦<span id="totalPrice"></span></p>
         <div class="d-flex w-100">
             <button onclick="addList()" class="btn btn-dark mx-3">Submit</button>
             <div id="divTotal"></div>
@@ -60,38 +54,93 @@
     <div id="divOne" class="mt-4"></div>
 </body>
 <script>
+    let itemName = document.getElementById("One");
+    let itemPrice = document.getElementById("Two");
+    let itemQuan = document.getElementById("Three");
+    let shoppingList = document.getElementById("divOne");
+    let totalDisp = document.getElementById("totalPrice");
+
+    let itemsArray = [];
 
     function addList() {
-        let item = document.getElementById("One").value
-        let price = document.getElementById("Two").value
-        let quan = document.getElementById("Three").value
-        let sub = Number(price * quan)
-        let totalDiv = document.getElementById("divTotal")
-        let divOne = document.getElementById("divOne")
+        event.preventDefault();
 
-        let total = sub
+       let items = itemName.value;
+       let price = itemPrice.value;
+       let quan = itemQuan.value;
 
-        totalDiv.innerHTML += `Total: ${total}`
+       let totalPrice = price * quan;
 
-        divOne.innerHTML +=
-            `<div>Item:${item}, Price: ${price}, Quantity: ${quan}, Subtotal:${sub}
-                <button>Delete</button>
-                <button onclick="test()">Edit</button>
-            </div> <br>`
-        
-        //  users.map((item, index) => {
-        //     divOne.innerHTML += `
-        //     <p>${item.name}</p>
-        //     <p>${item.age}</p>
-        //     <button>Edit</button>
-        // `
-        // })
-        // for (let i = 1; i <= numTwo; i++) {
-        //     let result = (numOne * i)
-        //     play.innerHTML += (`${numOne} * ${i} = ${result} <br>`)
-        //     console.log(`${numOne} * ${i} = ${result}`)
-        // }
+       let newItem = {
+        name: items,
+        price: price,
+        quantity: quan,
+        totalPrice: totalPrice
+       };
 
+       itemsArray.push(newItem);
+
+       listItems();
+
+       addTotal();
+
+       itemName.value = "";
+       itemPrice.value = "";
+       itemQuan.value = "";
+    }
+
+    function listItems() {
+        shoppingList.innerHTML = "";
+
+        itemsArray.forEach(function(item, index){
+            let itemList = `
+            <div class="d-flex justify-content-between align-items-center mb-3 w-75 mx-auto fs-5">
+            <div class="mb-3">Item: ${item.name}, Price: ${item.price}, Quantity: ${item.quantity} = Sub-Total: ${item.totalPrice}</div>
+            <div>
+                <button class="btn btn-dark text-light" onclick="remove(${index})">Delete</button>
+                <button class="btn btn-dark text-light" onclick="change(${index})">Edit</button>
+             </div>
+             </div>
+            `
+
+        shoppingList.innerHTML += itemList;
+        });
+    }
+
+    function remove(index) {
+        itemsArray.splice(index, 1);
+
+        listItems();
+
+        addTotal();
+    }
+
+    function change(index) {
+        let edit = itemsArray[index];
+
+        edit.name = prompt("Enter your Item:")
+        edit.price = prompt("Enter item price:")
+        edit.quantity = prompt("Enter item quantity:")
+
+        itemName.value = edit.name;
+        itemPrice.value = edit.price;
+        itemQuan.value = edit.quantity;
+
+        itemsArray.splice(index, 1);
+
+        addList();
+
+        addTotal();
+    }
+
+    function addTotal() {
+        let total = 0
+
+        itemsArray.forEach(function(item){
+            total += item.totalPrice;
+        })
+
+        totalDisp.innerHTML = total
     }
 </script>
 
