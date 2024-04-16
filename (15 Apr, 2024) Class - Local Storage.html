@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //LocalStorage in JavaScript
+
+        let name = "Wole";
+        localStorage.setItem("name", name)
+
+
+        let userDetails = [
+            { name: "Wole", age: 1111 },
+            { name: "Ridwan", age: 1112 },
+            { name: "Olayemi", age: 1113 },
+            { name: "Taoheed", age: 1114 },
+            { name: "Segun", age: 1115 },
+            { name: "Joseph", age: 1116 },
+            { name: "Temitayo", age: 1117 },
+            { name: "Damola", age: 1118 },
+        ];
+
+        let stringifiedDetails = JSON.stringify(userDetails);
+        localStorage.setItem("userDetails", stringifiedDetails);
+
+        let details = localStorage.getItem("userDetails");
+        let parsedDetails = JSON.parse(details);
+        console.log(parsedDetails);
+
+        localStorage.removeItem("name");
+
+        localStorage.clear()
+</script>
+</html>
