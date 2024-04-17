@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="pOne"></p>
+    <p id="pTwo"></p>
+
+    <audio id="firstAudio" src="../../../Music/01 - Death On Two Legs - Dedicated To.mp3"></audio>
+</body>
+<script>
+    //setInterval and setTimeout in JS;
+        let p1 = document.getElementById("pOne")
+        let p2 = document.getElementById("pTwo")
+
+        function displayName() {
+            p1.innerHTML += `My name is Habeeb`
+        }
+
+        let firstInterval = setInterval(displayName, 1000);
+
+
+        let date = new Date();
+        console.log(date.getSeconds())
+        console.log(date.getMinutes())
+
+        setInterval(() => {
+            let anotherDate = new Date;
+            p2.innerHTML = anotherDate.getSeconds()
+        }, 1000)
+
+
+        let firstTimeout = setTimeout(() => {
+            clearInterval(firstInterval)
+        }, 7000)
+        clearTimeout(firstTimeout)
+
+        let firstAudio = document.getElementById("firstAudio");
+
+        setTimeout(() => {
+            firstAudio.play()
+        }, 5000)
+</script>
+</html>
