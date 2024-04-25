@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    const apiKey = "96e7435bef9d5f2dbadf238b1c27706e" //My api key
+
+    //https://nobelium-weather-app.netlify.app/ //Link to my weather app on netlify
+
+
+    `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}` //For weather condition of the inputed location
+
+    navigator.geolocation.getCurrentPosition(async (position) => {
+        const apiKey = "96e7435bef9d5f2dbadf238b1c27706e"
+        let latitude = position.coords.latitude;
+        let longitude = position.coords.longitude;
+        let condition = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`) // For weather condition of the user's current location
+        let conditionData = await (condition.json());
+        console.log(conditionData)
+    })
+
+    // APIs
+    //Application Programming Interface
+    let sectionOne = document.getElementById("sectionOne");
+    async function fetchDataOne() {
+        try {
+            let response = await fetch("https://jsonplaceholder.typicode.com/todos");
+            let responseData = await response.json();
+            console.log(responseData)
+            responseData.map((item, index) => {
+                sectionOne.innerHTML += `
+                                    <div class='card p-3 m-3'>
+                                    <p>Id: ${item.id}</p>
+                                    <p>UserId: ${item.userId}</p>
+                                    <p>Title: ${item.title}</p>
+                                    ${item.completed ? "<p class='bg bg-success'>Completed</p>" : "<p class='bg bg-danger'>Not completed</p>"}
+                                    </div>
+                                    `
+                })
+            } catch (error) {
+                console.log(error)
+            } finally {
+                alert("Request completed");
+            }
+        }
+    fetchDataOne()
+
+    const fetchDataTwo = async () => {
+
+    }
+
+
+    function fetchDataThree() {
+        let response = fetch("https://jsonplaceholder.typicode.com/todos");
+        response.then((result) => {
+            console.log(result)
+
+            let responseData = result.json()
+            responseData.then((data) => {
+                console.log(data)
+            }).catch((error) => {
+                    throw error
+            })
+            }).catch((error) => {
+                console.log(error)
+            }).finally(() => {
+                alert("Another completed request")
+            })
+        }
+</script>
+</html>
