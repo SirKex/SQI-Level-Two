@@ -42,7 +42,6 @@
     const apiKey = "96e7435bef9d5f2dbadf238b1c27706e"
 
     window.addEventListener('load', () => {
-            // Accessing Geolocation of User
                 navigator.geolocation.getCurrentPosition(async (position) => {
                     let latitude = position.coords.latitude;
                     let longitude = position.coords.longitude;
@@ -67,7 +66,6 @@
         temP.innerHTML = "";
         weatherDesc.innerHTML = "";
         countryCode.innerHTML = "";
-        // Accessing Geolocation of Search
             navigator.geolocation.getCurrentPosition(async (position) => {
                 let location = document.getElementById("inputLoc").value
                 let condition = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`)
