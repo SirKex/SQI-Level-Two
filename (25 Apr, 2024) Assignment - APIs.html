@@ -43,7 +43,6 @@
 
     window.addEventListener('load', () => {
             // Accessing Geolocation of User
-            if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(async (position) => {
                     let latitude = position.coords.latitude;
                     let longitude = position.coords.longitude;
@@ -61,7 +60,6 @@
                     weatherDesc.innerHTML += `${description}`;
                     countryCode.innerHTML += `${country}`;
                 });
-            }
     });
 
     async function searchLoc() {
@@ -70,7 +68,6 @@
         weatherDesc.innerHTML = "";
         countryCode.innerHTML = "";
         // Accessing Geolocation of Search
-        if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(async (position) => {
                 let location = document.getElementById("inputLoc").value
                 let condition = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`)
@@ -86,7 +83,6 @@
                 weatherDesc.innerHTML += `${description}`
                 countryCode.innerHTML += `${country}`
             });
-        }
     }
 
 </script>
