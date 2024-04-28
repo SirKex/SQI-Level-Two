@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous" class="text-uppercase"></script>
+</head>
+<style>
+    #secOne{
+        background-image: url(https://www.pixelstalk.net/wp-content/uploads/2016/07/Free-Weather-Image-Download-620x388.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100vh;
+    }
+</style>
+<body>
+    <section id="secOne" class="d-flex align-items-center justify-content-center flex-column">
+        <div id="divOne" class="w-25 bg-transparent fs-5 col-11 col-md-8 col-lg-6 mx-auto mt-5 rounded-3 p-3 shadow bg-light">
+            <p>Current Location: <span id="currentLoc" class="text-uppercase"></span class="text-uppercase"></p>
+            <p>Temperature: <span id="teMP" class="text-uppercase"></span class="text-uppercase"></p>
+        </div>
+        <div id="divTwo" class="w-25 bg-transparent fs-5 col-11 col-md-8 col-lg-6 mx-auto mt-5 rounded-3 p-3 shadow bg-light">
+            <p>Weather desc.: <span id="weatherDesc" class="text-uppercase"></span class="text-uppercase"></p>
+            <p>Country code: <span id="countryCode" class="text-uppercase"></span class="text-uppercase"></p>
+        </div>
+        <div id="divThree" class="w-25 bg-transparent fs-5 col-11 col-md-8 col-lg-6 mx-auto mt-5 rounded-3 p-3 shadow bg-light">
+            <p><input id="inputLoc" type="text" class="bg-transparent" style="border: none;" class="text-uppercase"></p>
+            <button class="btn btn-outline-dark" onclick="searchLoc()">Search</button>
+        </div>
+    </section>
+</body>
+<script>
+    let curLoc = document.getElementById("currentLoc")
+    let temP = document.getElementById("teMP")
+    let weatherDesc = document.getElementById("weatherDesc")
+    let countryCode = document.getElementById("countryCode")
+    const apiKey = "96e7435bef9d5f2dbadf238b1c27706e"
+
+    window.addEventListener('load', () => {
+            // Accessing Geolocation of User
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(async (position) => {
+                    let latitude = position.coords.latitude;
+                    let longitude = position.coords.longitude;
+                    let condition = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`)
+                    let conditionData = await (condition.json());
+                    console.log(conditionData);
+                    const {temp} = conditionData.main;
+                    const place = conditionData.name;
+                    const {description} = conditionData.weather[0];
+                    const {country} = conditionData.sys;
+
+
+                    curLoc.innerHTML += `${place}`;
+                    temP.innerHTML += `${temp.toFixed(2)} °C`;
+                    weatherDesc.innerHTML += `${description}`;
+                    countryCode.innerHTML += `${country}`;
+                });
+            }
+    });
+
+    async function searchLoc() {
+        curLoc.innerHTML = "";
+        temP.innerHTML = "";
+        weatherDesc.innerHTML = "";
+        countryCode.innerHTML = "";
+        // Accessing Geolocation of Search
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(async (position) => {
+                let location = document.getElementById("inputLoc").value
+                let condition = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`)
+                let conditionData = await (condition.json());
+                console.log(conditionData);
+                const { temp } = conditionData.main;
+                const place = conditionData.name;
+                const { description } = conditionData.weather[0];
+                const { country } = conditionData.sys;
+
+                curLoc.innerHTML += `${place}`
+                temP.innerHTML += `${temp.toFixed(2)} °C`;
+                weatherDesc.innerHTML += `${description}`
+                countryCode.innerHTML += `${country}`
+            });
+        }
+    }
+
+</script>
+</html>
