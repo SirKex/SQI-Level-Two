@@ -131,6 +131,68 @@
                 <option value="58">58</option>
                 <option value="59">59</option>
             </select>
+            <select id="selectSec" class="p-2 mx-2">
+                <option value="00">00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+                <option value="51">51</option>
+                <option value="52">52</option>
+                <option value="53">53</option>
+                <option value="54">54</option>
+                <option value="55">55</option>
+                <option value="56">56</option>
+                <option value="57">57</option>
+                <option value="58">58</option>
+                <option value="59">59</option>
+            </select>
         </form>
         <div class="d-flex align-items-center justify-content-center mt-4">
             <button class="btn btn-dark w-25" onclick="setAlarm()">Set Alarm</button>
@@ -143,7 +205,7 @@
         <div id="displayAlarm" class="card col-11 col-lg-6 col-md-8 my-2 mx-auto p-2 mt-5 shadow"></div>
     </section>
 
-    <audio id="alarmSound" src="../../../Downloads/mixkit-classic-alarm-995.wav" loop></audio>
+    <audio id="alarmSound" src="../../../Downloads/Crayon_Ft_Ayra_Starr_-_Ngozi.mp3"></audio>
 </body>
 <script>
     let day = document.getElementById("conDatOne");
@@ -154,6 +216,7 @@
     let sec = document.getElementById("conDivThree");
     let selectHrs = document.getElementById("selectHrs");
     let selectMin = document.getElementById("selectMin");
+    let selectSec = document.getElementById("selectSec");
     let displayAlarm = document.getElementById("displayAlarm");
     let alarmSound = document.getElementById("alarmSound");
 
@@ -181,8 +244,9 @@
             displayAlarm.innerHTML += `
             <div id="alarmDiv" class="card col-11 col-lg-6 col-md-8 my-2 mx-auto p-2 fs-3 shadow">
                 <div class="d-flex mx-auto justify-content-center align-items-center m-2">
-                    <span>${item.alarmHour} :</span>
-                    <span>${item.alarmMinute}</span>
+                    <span>${item.alarmHour} : </span>
+                    <span>${item.alarmMinute} : </span>
+                    <span>${item.alarmSecond}</span>
                 </div>
                 <div class="d-flex justify-content-evenly align-items-center">
                     <button class="btn btn-danger" onclick="deleteAlarm(${index})">Delete</button>
@@ -197,13 +261,15 @@
     setAlarm = () => {
         let alarmHour = selectHrs.value;
         let alarmMinute = selectMin.value;
-        let Alarm = { alarmHour, alarmMinute };
+        let alarmSecond = selectSec.value;
+        let Alarm = { alarmHour, alarmMinute, alarmSecond };
         let alarmTime = JSON.parse(localStorage.getItem("alarmTime"));
         alarmTime.push(Alarm);
         localStorage.setItem("alarmTime", JSON.stringify(alarmTime));
 
         selectHrs.value = "00";
         selectMin.value = "00";
+        selectSec.value = "00";
 
         display();
     };
@@ -225,9 +291,11 @@
         let alarmTime = JSON.parse(localStorage.getItem("alarmTime"));
         let newHour = prompt("Edit hour", alarmTime[index].alarmHour);
         let newMinute = prompt("Edit minute", alarmTime[index].alarmMinute);
-        if (newHour !== null && newMinute !== null) {
+        let newSecond = prompt("Edit second", alarmTime[index].alarmSecond);
+        if (newHour !== null && newMinute !== null && newSecond) {
             alarmTime[index].alarmHour = newHour;
             alarmTime[index].alarmMinute = newMinute;
+            alarmTime[index].alarmSecond = newSecond;
         };
 
         localStorage.setItem("alarmTime", JSON.stringify(alarmTime));
@@ -238,8 +306,8 @@
     runAlarm = (currentTime) => {
         let alarmTime = JSON.parse(localStorage.getItem("alarmTime"));
         alarmTime.forEach((item) => {
-            if (currentTime.getHours() == item.alarmHour && currentTime.getMinutes() == item.alarmMinute) {
-                // alarmSound.currentTime = 0;
+            if (currentTime.getHours() == item.alarmHour && currentTime.getMinutes() == item.alarmMinute && currentTime.getSeconds() == item.alarmSecond) {
+                alarmSound.currentTime = 0;
                 alarmSound.play();
             }
         });
